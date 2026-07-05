@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rejisha Gopan | Data Engineer</title>
+<meta name="description" content="Rejisha Gopan — Data Engineer specialising in ETL/ELT pipelines on Azure & AWS. Python, PySpark, Airflow, dbt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e17;
+  --bg-soft:#101624;
+  --card:#141c2e;
+  --card-border:#1f2a42;
+  --text:#e6ebf4;
+  --muted:#94a3b8;
+  --accent:#22d3ee;      /* cyan */
+  --accent-2:#818cf8;    /* indigo */
+  --accent-3:#34d399;    /* emerald */
+  --grad:linear-gradient(135deg,var(--accent),var(--accent-2));
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.65;overflow-x:hidden}
+h1,h2,h3{font-family:'Sora',sans-serif}
+a{color:var(--accent);text-decoration:none}
+img{max-width:100%}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+.section-tag{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase}
+.section-title{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:800;margin:.35rem 0 2.2rem}
+.section-title span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ---------- NAV ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,23,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--card-border)}
+.nav-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:1.05rem;color:var(--text)}
+.logo b{color:var(--accent)}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--muted);font-size:.92rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.menu-btn{display:none;background:none;border:1px solid var(--card-border);color:var(--text);border-radius:8px;padding:6px 12px;font-size:1.1rem;cursor:pointer}
+@media(max-width:820px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg-soft);flex-direction:column;padding:18px 24px;border-bottom:1px solid var(--card-border)}
+  .nav-links.open{display:flex}
+  .menu-btn{display:block}
+}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 80px}
+.hero::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(600px 300px at 15% 20%,rgba(34,211,238,.10),transparent),
+  radial-gradient(500px 300px at 85% 70%,rgba(129,140,248,.10),transparent)}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr}}
+.hero-kicker{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.95rem;margin-bottom:14px}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:800;line-height:1.12}
+.hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-tagline{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--muted);margin:20px 0 8px;max-width:560px}
+.hero-tagline b{color:var(--text)}
+.hero-sub{color:var(--muted);max-width:560px;margin-bottom:28px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-weight:600;font-size:.95rem;transition:transform .15s,box-shadow .15s;cursor:pointer;border:none}
+.btn-primary{background:var(--grad);color:#08101d}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--card-border)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,211,238,.18)}
+.hero-meta{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+.hero-meta span{display:inline-flex;align-items:center;gap:6px}
+.terminal{background:#0d1420;border:1px solid var(--card-border);border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.45);font-family:'JetBrains Mono',monospace;font-size:.82rem}
+.terminal-bar{background:#131b2b;padding:10px 14px;display:flex;gap:7px}
+.terminal-bar i{width:11px;height:11px;border-radius:50%;display:block}
+.terminal-bar i:nth-child(1){background:#f87171}.terminal-bar i:nth-child(2){background:#fbbf24}.terminal-bar i:nth-child(3){background:#34d399}
+.terminal-body{padding:18px 20px;line-height:1.9}
+.t-key{color:var(--accent-2)}.t-str{color:var(--accent-3)}.t-num{color:#fbbf24}.t-com{color:#4b5a75}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:64px;position:relative}
+@media(max-width:820px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:22px;text-align:center}
+.stat b{display:block;font-family:'Sora',sans-serif;font-size:1.7rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat small{color:var(--muted);font-size:.82rem}
+
+/* ---------- ABOUT ---------- */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+@media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+.about-text p{color:var(--muted);margin-bottom:16px}
+.about-text p b{color:var(--text)}
+.highlight-list{list-style:none;margin-top:8px}
+.highlight-list li{padding:10px 0 10px 30px;position:relative;color:var(--muted)}
+.highlight-list li::before{content:'▹';position:absolute;left:6px;color:var(--accent)}
+.highlight-list li b{color:var(--text)}
+
+/* ---------- SKILLS ---------- */
+.skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.skill-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:24px;transition:border-color .2s,transform .2s}
+.skill-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.skill-card h3{font-size:1rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.skill-card h3 em{font-style:normal;font-size:1.2rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.22);color:#a5f3fc;padding:5px 12px;border-radius:999px;font-size:.8rem;font-family:'JetBrains Mono',monospace}
+
+/* ---------- PROJECTS ---------- */
+.project{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:32px;margin-bottom:24px;transition:border-color .2s}
+.project:hover{border-color:var(--accent-2)}
+.project.featured{border:1px solid transparent;background:
+  linear-gradient(var(--card),var(--card)) padding-box,
+  var(--grad) border-box}
+.project-top{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline;margin-bottom:6px}
+.project h3{font-size:1.25rem}
+.badge{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#08101d;background:var(--grad);padding:4px 10px;border-radius:6px;font-weight:600}
+.project-date{color:var(--muted);font-size:.85rem;font-family:'JetBrains Mono',monospace}
+.project p{color:var(--muted);margin:10px 0 14px}
+.project ul{list-style:none;margin-bottom:16px}
+.project ul li{padding:5px 0 5px 26px;position:relative;color:var(--muted);font-size:.94rem}
+.project ul li::before{content:'▹';position:absolute;left:4px;color:var(--accent-3)}
+.project ul li b{color:var(--text)}
+.project-links{display:flex;gap:16px;font-size:.9rem;font-weight:600}
+
+/* ---------- EXPERIENCE ---------- */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--accent),var(--accent-2))}
+.job{position:relative;margin-bottom:42px}
+.job::before{content:'';position:absolute;left:-30px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(34,211,238,.18)}
+.job h3{font-size:1.12rem}
+.job h3 span{color:var(--accent)}
+.job-meta{color:var(--muted);font-size:.85rem;font-family:'JetBrains Mono',monospace;margin:4px 0 12px}
+.job ul{list-style:none}
+.job ul li{padding:5px 0 5px 26px;position:relative;color:var(--muted);font-size:.94rem}
+.job ul li::before{content:'▹';position:absolute;left:4px;color:var(--accent)}
+.job ul li b{color:var(--text)}
+
+/* ---------- EDUCATION / CERTS ---------- */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.two-col{grid-template-columns:1fr}}
+.info-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:26px}
+.info-card h3{font-size:1.02rem;margin-bottom:4px}
+.info-card .sub{color:var(--accent);font-size:.9rem;margin-bottom:6px}
+.info-card .date{color:var(--muted);font-size:.82rem;font-family:'JetBrains Mono',monospace;margin-bottom:10px}
+.info-card p{color:var(--muted);font-size:.92rem}
+.cert-list{list-style:none}
+.cert-list li{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:16px 20px;margin-bottom:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.cert-list li b{font-size:.95rem}
+.cert-list li small{color:var(--muted);font-family:'JetBrains Mono',monospace}
+.cert-list li a{font-size:.85rem;font-weight:600}
+
+/* ---------- AWARDS ---------- */
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.award{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:24px;text-align:center}
+.award em{font-size:1.6rem;font-style:normal;display:block;margin-bottom:10px}
+.award b{display:block;margin-bottom:4px}
+.award small{color:var(--muted)}
+
+/* ---------- CONTACT ---------- */
+.contact{text-align:center}
+.contact p{color:var(--muted);max-width:520px;margin:0 auto 30px}
+.contact-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--card-border);padding:26px 0;text-align:center;color:var(--muted);font-size:.85rem;font-family:'JetBrains Mono',monospace}
+
+/* reveal animation */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#top">rejisha<b>.gopan</b>()</a>
+    <button class="menu-btn" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-kicker">Hi, I am</div>
+      <h1>Rejisha<br><span>I build data pipelines that just work.</span></h1>
+      <p class="hero-tagline"><b>Messy data slows down decisions. Clean, reliable data drives them.</b></p>
+      <p class="hero-sub">Data Engineer with 3+ years of experience designing scalable ETL/ELT pipelines and automation workflows on Azure &amp; AWS, Python, PySpark, Airflow, dbt. MSc Data Science &amp; Analytics (Distinction), University of Hertfordshire.</p>
+      <div class="hero-ctas">
+        <!-- EDIT: replace # with your real links -->
+        <!-- <a class="btn btn-primary" href="#projects">View my work</a> -->
+        <a class="btn btn-ghost" href="#" target="_blank">Download Resume</a>
+      </div>
+      <div class="hero-meta">
+        <span>📍 Hatfield, UK</span>
+        <span>📧 <a href="mailto:rejisha.gopan@outlook.com">rejisha.gopan@outlook.com</a></span>
+      </div>
+    </div>
+    <div class="terminal reveal">
+      <div class="terminal-bar"><i></i><i></i><i></i></div>
+      <div class="terminal-body">
+<span class="t-com"># rejisha_gopan.py</span><br>
+<span class="t-key">engineer</span> = {<br>
+&nbsp;&nbsp;<span class="t-str">"role"</span>: <span class="t-str">"Data Engineer"</span>,<br>
+&nbsp;&nbsp;<span class="t-str">"experience_years"</span>: <span class="t-num">3</span>+,<br>
+&nbsp;&nbsp;<span class="t-str">"stack"</span>: [<span class="t-str">"Python"</span>, <span class="t-str">"PySpark"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Azure"</span>, <span class="t-str">"Azure"</span>,<span class="t-str">"Airflow"</span>, <span class="t-str">"dbt"</span>],<br>
+&nbsp;&nbsp;<span class="t-str">"status"</span>: <span class="t-str">"open_to_work"</span> ✅<br>
+}
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="stats reveal">
+    <div class="stat"><b>3+</b><small>Years of experience</small></div>
+    <div class="stat"><b>80%</b><small>Manual effort reduced via ETL automation</small></div>
+    <div class="stat"><b>3.4M+</b><small>Rows processed in NHS pipeline</small></div>
+    <div class="stat"><b>50+</b><small>Students taught Python &amp; SQL</small></div>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="container reveal">
+    <div class="section-tag">01. About</div>
+    <h2 class="section-title">Who <span>am I?</span></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <b>Data Engineer</b> who enjoys solving data problems end-to-end, from ingestion to transformation to building reliable, production-grade systems.</p>
+        <p>I started as an <b>Associate Software Engineer at Nuvento Systems</b>, where I pivoted into data engineering and earned <b>three performance awards</b> in two years. I then completed an <b>MSc in Data Science &amp; Analytics with Distinction</b> at the University of Hertfordshire, and now build modern lakehouse pipelines with <b>PySpark, Delta Lake, dbt and Airflow</b>.</p>
+        <p>Alongside engineering, I mentor and training <b>50+ learners</b> in Python, SQL and data workflows with a <b>100% pass rate</b> for the students I've supported.</p>
+      </div>
+      <ul class="highlight-list">
+        <li><b>Domains:</b> Healthcare, Insurance and Education Data</li>
+        <li><b>Specialities:</b> Medallion architecture, star schema modelling, data quality &amp; validation</li>
+        <li><b>Certified:</b> Microsoft Azure Data Fundamentals · Databricks Lakehouse Fundamentals · Big Data Fundamentals with PySpark </li>
+        <li><b>Recognised:</b> 3× award winner at Nuvento Systems (2021–2022)</li>
+        <li><b>Currently:</b> Open to Data Engineering opportunities in the UK</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" style="background:var(--bg-soft)">
+  <div class="container reveal">
+    <div class="section-tag">02. Skills</div>
+    <h2 class="section-title">My <span>tech stack</span></h2>
+    <div class="skill-groups">
+      <div class="skill-card">
+        <h3><em>💻</em> Languages</h3>
+        <div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">R</span></div>
+      </div>
+      <div class="skill-card">
+        <h3><em>☁️</em> Cloud &amp; Big Data</h3>
+        <div class="chips"><span class="chip">Azure</span><span class="chip">AWS</span><span class="chip">Apache Spark</span><span class="chip">PySpark</span><span class="chip">Delta Lake</span><span class="chip">dbt-core</span><span class="chip">Apache Airflow</span><span class="chip">Power BI</span></div>
+      </div>
+      <div class="skill-card">
+        <h3><em>🗄️</em> Databases &amp; Frameworks</h3>
+        <div class="chips"><span class="chip">Azure SQL</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Django</span><span class="chip">Flask</span><span class="chip">TensorFlow</span></div>
+      </div>
+      <div class="skill-card">
+        <h3><em>🛠️</em> Tools &amp; Practices</h3>
+        <div class="chips"><span class="chip">Git</span><span class="chip">CI/CD</span><span class="chip">Docker</span><span class="chip">JIRA</span><span class="chip">Postman</span><span class="chip">Medallion Architecture</span><span class="chip">Star Schema</span><span class="chip">Data Quality</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="container reveal">
+    <div class="section-tag">03. Projects</div>
+    <h2 class="section-title">Things <span>I've built</span></h2>
+
+    <div class="project featured">
+      <div class="project-top">
+        <h3>NHS Prescribing Analytics Pipeline <span class="badge">Featured</span></h3>
+        <span class="project-date">Mar 2026 - Present</span>
+      </div>
+      <p>End-to-end ELT pipeline on 3.4M+ rows of real NHS Prescription Cost Analysis data, processing monthly prescription costs across six NHS regions.</p>
+      <ul>
+        <li><b>Bronze &amp; Silver layers on Azure:</b> Python ingestion into Blob Storage, PySpark + Delta Lake transformations with schema enforcement, deduplication and dynamic month discovery</li>
+        <li><b>Gold layer:</b> dbt Kimball star schema in Azure SQL with surrogate keys, fact aggregation and 23 passing data quality tests</li>
+        <li><b>Orchestration:</b> five-task Apache Airflow DAG on Docker, running end-to-end with zero manual intervention</li>
+        <li><b>Insight:</b> Power BI dashboard exposing £2.85bn total drug spend and 320M prescription items with DAX regional/trend analysis</li>
+      </ul>
+      <div class="chips" style="margin-bottom:16px"><span class="chip">Azure</span><span class="chip">PySpark</span><span class="chip">Delta Lake</span><span class="chip">dbt</span><span class="chip">Airflow</span><span class="chip">Docker</span><span class="chip">Power BI</span></div>
+      <div class="project-links">
+        
+        <!-- EDIT: add GitHub repo / dashboard links -->
+        <a href="#" target="_blank">GitHub ↗</a>
+        <a href="#" target="_blank">Live dashboard ↗</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Malayalam Handwritten Character Recognition</h3>
+        <span class="project-date">MSc Dissertation · 2024</span>
+      </div>
+      <p>Deep learning research advancing OCR for complex cursive scripts — investigated SVM, CNN, CNN-LSTM and GPT-4 Vision on 16,250 handwritten characters.</p>
+      <ul>
+        <li><b>CNN-LSTM achieved 99.64% accuracy</b>, outperforming all baseline models</li>
+        <li>Applied data augmentation and systematic model comparison to improve digitisation accessibility for Malayalam documents</li>
+      </ul>
+      <div class="chips" style="margin-bottom:16px"><span class="chip">Python</span><span class="chip">TensorFlow</span><span class="chip">CNN-LSTM</span><span class="chip">GPT-4 Vision</span></div>
+      <div class="project-links"><a href="#" target="_blank">GitHub ↗</a></div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Automated Document Data Extraction</h3>
+        <span class="project-date">Nuvento · 2021–2023</span>
+      </div>
+      <p>Automated extraction from PDFs and images stored across FTP, Azure Blob and AWS S3 using AWS Textract and Azure Computer Vision.</p>
+      <ul>
+        <li>Reduced processing time by <b>60%</b> with <b>95% accuracy</b></li>
+        <li>Deployed batch validation via CI/CD to track and flag extraction errors</li>
+      </ul>
+      <div class="chips" style="margin-bottom:16px"><span class="chip">AWS Textract</span><span class="chip">Azure Computer Vision</span><span class="chip">Python</span><span class="chip">CI/CD</span></div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Python Dialogflow Chatbot</h3>
+        <span class="project-date">Adhoc Technologies · 2019</span>
+      </div>
+      <p>Customer-support chatbot integrated with Dialogflow, handling user requests automatically.</p>
+      <ul>
+        <li>Reduced response times by <b>30%</b> and cut overall support tickets, raising customer satisfaction</li>
+      </ul>
+      <div class="chips" style="margin-bottom:16px"><span class="chip">Python</span><span class="chip">Dialogflow</span><span class="chip">NLP</span></div>
+    </div>
+
+    <!-- EDIT: copy any .project block above to a new project -->
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience" style="background:var(--bg-soft)">
+  <div class="container reveal">
+    <div class="section-tag">04. Experience</div>
+    <h2 class="section-title">Where <span>I've worked</span></h2>
+    <div class="timeline">
+
+      <div class="job">
+        <h3>Freelance Data Engineering Mentor &amp; Consultant <span>@ Self-Employed</span></h3>
+        <div class="job-meta">Jun 2023 – Present · United Kingdom</div>
+        <ul>
+          <li>Taught and assessed <b>Python and SQL for 50+ students</b>, covering data wrangling, ETL concepts and query writing</li>
+          <li>Guided <b>15+ students</b> through ML and data engineering projects end-to-end, achieving a <b>100% pass rate</b></li>
+          <li>Supervised a deep learning brain tumour classification project reaching <b>90% validation accuracy</b></li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Associate Software Engineer <span>@ Nuvento Systems</span></h3>
+        <div class="job-meta">Dec 2020 – Jun 2023 · Kochi, India</div>
+        <ul>
+          <li>Developed a Python ETL pipeline automating Azure Blob → MySQL ingestion, <b>reducing manual effort by 80% and saving 120 hours/month</b></li>
+          <li>Built ETL pipelines with <b>Django, Celery and Redis</b> to automate student record ingestion and validation, improving data consistency by 30%</li>
+          <li>Designed and executed a <b>MongoDB cluster migration</b> with reconciliation and schema validation, cutting manual verification by 40%</li>
+          <li>Engineered a regex-based pipeline processing <b>200+ resumes daily</b> with automated batch validation via CI/CD at 85% accuracy</li>
+          <li><b>3× award winner</b>: Above &amp; Beyond the Call of Duty (2021, 2022), You Are a Gem (2022)</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Internship Trainee <span>@ Adhoc Technologies</span></h3>
+        <div class="job-meta">Jul 2019 – Feb 2020 · Thiruvananthapuram, India</div>
+        <ul>
+          <li>Built a Python Dialogflow chatbot cutting support response times by <b>30%</b></li>
+          <li>Implemented a face mask recognition system using <b>TensorFlow and OpenCV</b> during COVID-19, decreasing violations by 20%</li>
+          <li>Mentored new interns, increasing team output by 10%</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= EDUCATION & CERTIFICATIONS ================= -->
+<section id="education">
+  <div class="container reveal">
+    <div class="section-tag">05. Education &amp; Certifications</div>
+    <h2 class="section-title">Learning <span>never stops</span></h2>
+    <div class="two-col">
+      <div>
+        <div class="info-card" style="margin-bottom:18px">
+          <h3>MSc Data Science and Analytics — Distinction</h3>
+          <div class="sub">University of Hertfordshire</div>
+          <div class="date">2023 – 2024</div>
+          <p>Dissertation: Malayalam Handwritten Character Recognition using Deep Learning — CNN-LSTM achieved 99.64% accuracy on 16,250 characters.</p>
+        </div>
+        <div class="info-card">
+          <h3>BTech Computer Science</h3>
+          <div class="sub">APJ Abdul Kalam Technological University</div>
+          <div class="date">2015 – 2019</div>
+          <p>Built "Robo Guru" AI tutor app (Python + Dialogflow) as final year project; departmental award, 2017.</p>
+        </div>
+      </div>
+      <ul class="cert-list">
+        <!-- EDIT: replace # with your Credly badge URLs -->
+        <li><div><b>Microsoft Certified: Azure Data Fundamentals</b><br><small>Microsoft · 2022</small></div><a href="#" target="_blank">Verify ↗</a></li>
+        <li><div><b>Databricks Lakehouse Fundamentals</b><br><small>Databricks Academy · 2023</small></div><a href="#" target="_blank">Verify ↗</a></li>
+        <li><div><b>Big Data Fundamentals with PySpark</b><br><small>DataCamp · 2026</small></div></li>
+        <li><div><b>Information Governance &amp; Data Security — Level 1</b><br><small>The Mandatory Training Group · 2026</small></div></li>
+        <li><div><b>AWS Cloud Practitioner Essentials</b><br><small>AWS</small></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AWARDS ================= -->
+<section style="background:var(--bg-soft);padding-top:64px;padding-bottom:64px">
+  <div class="container reveal">
+    <div class="section-tag">06. Recognition</div>
+    <h2 class="section-title">Awards</h2>
+    <div class="awards">
+      <div class="award"><em>🏆</em><b>Above &amp; Beyond the Call of Duty</b><small>Nuvento Systems · 2022</small></div>
+      <div class="award"><em>💎</em><b>You Are a Gem Award</b><small>Nuvento Systems · 2022</small></div>
+      <div class="award"><em>🏆</em><b>Above &amp; Beyond the Call of Duty</b><small>Nuvento Systems · 2021</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="contact">
+  <div class="container reveal">
+    <div class="section-tag">07. Contact</div>
+    <h2 class="section-title">Let's <span>work together</span></h2>
+    <p>I'm currently open to Data Engineering opportunities in the UK. Whether you have a role, a project, or just want to talk data — my inbox is always open.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:rejisha.u.gopan@gmail.com">📧 Say hello</a>
+      <a class="btn btn-ghost" href="https://calendly.com/rejisha-gopan" target="_blank">📅 Book a call</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/rejisha-gopan" target="_blank">LinkedIn</a>
+      <!-- EDIT: add your GitHub profile URL -->
+      <a class="btn btn-ghost" href="#" target="_blank">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">Designed &amp; built by Rejisha Gopan · © <span id="year"></span></div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+// scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, {threshold: 0.12});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// close mobile menu on link click
+document.querySelectorAll('#navlinks a').forEach(a =>
+  a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open')));
+</script>
+</body>
+</html>
